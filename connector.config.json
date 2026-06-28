@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "visibility": "public",
+  "extensionId": "irodori.neo4j",
+  "connector": {
+    "id": "neo4j.connector",
+    "engine": "neo4j",
+    "label": "Neo4j",
+    "aliases": [
+      "neo4j",
+      "Neo4j"
+    ],
+    "defaultPort": 7687,
+    "wire": "neo4j",
+    "module": "neo4j.driver",
+    "features": [
+      "metadata",
+      "streaming"
+    ]
+  },
+  "runtime": {
+    "abi": "irodori.connector.native.v1",
+    "module": {
+      "id": "neo4j.driver",
+      "path": "dist/native",
+      "platforms": [
+        "windowsX64",
+        "windowsArm64",
+        "macosX64",
+        "macosArm64",
+        "linuxX64",
+        "linuxArm64"
+      ]
+    },
+    "crate": "irodori_extension_neo4j",
+    "entrypoints": [
+      "irodori_extension_abi_version",
+      "irodori_connector_engine_json",
+      "irodori_extension_manifest_json",
+      "irodori_connector_config_json",
+      "irodori_connector_call_json",
+      "irodori_connector_free_buffer"
+    ],
+    "supportedCalls": [
+      "health",
+      "describe",
+      "manifest",
+      "config"
+    ],
+    "driverLinked": false
+  },
+  "source": {
+    "marketplaceId": "irodori.neo4j",
+    "repository": "https://github.com/hjosugi/irodori-extension-neo4j",
+    "knowledgeEngineStatus": "wired",
+    "adapter": "db/neo4j.rs",
+    "adapterSha256": "ec1edf1dc6ae2cdb2b6b7c01054cf72ff50fe76dbca7a4c382fc4b3e9ee8fe2a"
+  }
+}
