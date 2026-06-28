@@ -307,6 +307,143 @@
         "neo4j"
       ],
       "customDriverOptions": true
+    },
+    "experience": {
+      "schemaVersion": 1,
+      "domains": [
+        "graph"
+      ],
+      "inspiredBy": [
+        "Neo4j Browser",
+        "Neo4j Bloom",
+        "Neo4j Graph Data Science",
+        "Cypher shortest path"
+      ],
+      "resultViews": [
+        "graph",
+        "path",
+        "table"
+      ],
+      "objectTypes": [
+        "nodeLabels",
+        "relationshipTypes",
+        "properties",
+        "indexes",
+        "constraints"
+      ],
+      "workflows": [
+        {
+          "id": "graph-schema-overview",
+          "label": "Schema overview",
+          "description": "Summarize labels and relationship types before exploration.",
+          "resultView": "table",
+          "templateIds": [
+            "graph-cypher-label-counts"
+          ]
+        },
+        {
+          "id": "graph-neighborhood",
+          "label": "Explore neighborhood",
+          "description": "Return connected nodes and relationships around a node.",
+          "resultView": "graph",
+          "templateIds": [
+            "graph-cypher-neighborhood"
+          ]
+        },
+        {
+          "id": "graph-shortest-path",
+          "label": "Shortest path",
+          "description": "Find a bounded shortest path between source and target nodes.",
+          "resultView": "path",
+          "templateIds": [
+            "graph-cypher-shortest-path"
+          ]
+        },
+        {
+          "id": "graph-algorithm-starter",
+          "label": "Algorithm starter",
+          "description": "Open centrality and community-detection starter queries.",
+          "resultView": "table",
+          "templateIds": [
+            "graph-cypher-degree-centrality"
+          ]
+        }
+      ],
+      "queryTemplates": [
+        {
+          "id": "graph-cypher-label-counts",
+          "label": "Label counts",
+          "language": "cypher",
+          "description": "Count nodes by label for a quick schema read.",
+          "insertText": "MATCH (n)\nRETURN labels(n) AS labels, count(*) AS count\nORDER BY count DESC",
+          "parameters": [],
+          "resultView": "table"
+        },
+        {
+          "id": "graph-cypher-neighborhood",
+          "label": "Neighborhood graph",
+          "language": "cypher",
+          "description": "Render a small relationship neighborhood.",
+          "insertText": "MATCH (n)-[r]->(m)\nRETURN n, r, m\nLIMIT $limit",
+          "parameters": [
+            {
+              "id": "limit",
+              "label": "Limit",
+              "type": "number",
+              "default": 100
+            }
+          ],
+          "resultView": "graph"
+        },
+        {
+          "id": "graph-cypher-shortest-path",
+          "label": "Shortest path",
+          "language": "cypher",
+          "description": "Find a bounded shortest path between two nodes.",
+          "insertText": "MATCH p = shortestPath((source {id: $sourceId})-[*..6]-(target {id: $targetId}))\nRETURN p",
+          "parameters": [
+            {
+              "id": "sourceId",
+              "label": "Source id",
+              "type": "string"
+            },
+            {
+              "id": "targetId",
+              "label": "Target id",
+              "type": "string"
+            }
+          ],
+          "resultView": "path"
+        },
+        {
+          "id": "graph-cypher-degree-centrality",
+          "label": "Degree centrality starter",
+          "language": "cypher",
+          "description": "Find highly connected nodes without requiring a projected algorithm graph.",
+          "insertText": "MATCH (n)--()\nRETURN n, count(*) AS degree\nORDER BY degree DESC\nLIMIT $limit",
+          "parameters": [
+            {
+              "id": "limit",
+              "label": "Limit",
+              "type": "number",
+              "default": 25
+            }
+          ],
+          "resultView": "table"
+        }
+      ],
+      "inspectorHints": [
+        {
+          "id": "graph-node-labels",
+          "label": "Label browser",
+          "description": "Show labels, relationship types, and sample properties together."
+        },
+        {
+          "id": "graph-expand-depth",
+          "label": "Depth control",
+          "description": "Offer one, two, and three hop expansion presets."
+        }
+      ]
     }
   },
   "runtime": {
