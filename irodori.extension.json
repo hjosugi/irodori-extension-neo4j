@@ -34,7 +34,13 @@
         "module": "neo4j.driver",
         "features": [
           "metadata",
-          "streaming"
+          "streaming",
+          "graph",
+          "graphVisualization",
+          "pathFinding",
+          "graphAlgorithms",
+          "queryTemplates",
+          "visualization"
         ],
         "connection": {
           "schemaVersion": 1,

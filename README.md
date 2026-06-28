@@ -35,6 +35,26 @@ The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpe
 | `clientCertificate` | Client certificate / mTLS | `privateKey`, `privateKeyPassphrase` |
 | `customDriverOptions` | Custom driver options | `password`, `token`, `privateKey`, `privateKeyPassphrase` |
 
+## Experience Metadata
+
+- Domains: `graph`
+- Result views: `graph`, `path`, `table`
+- Inspired by: `Neo4j Browser`, `Neo4j Bloom`, `Neo4j Graph Data Science`, `Cypher shortest path`
+
+| Workflow | Result view | Templates |
+|---|---|---|
+| Schema overview | table | graph-cypher-label-counts |
+| Explore neighborhood | graph | graph-cypher-neighborhood |
+| Shortest path | path | graph-cypher-shortest-path |
+| Algorithm starter | table | graph-cypher-degree-centrality |
+
+| Template | Label | Language | Result view |
+|---|---|---|---|
+| `graph-cypher-label-counts` | Label counts | `cypher` | `table` |
+| `graph-cypher-neighborhood` | Neighborhood graph | `cypher` | `graph` |
+| `graph-cypher-shortest-path` | Shortest path | `cypher` | `path` |
+| `graph-cypher-degree-centrality` | Degree centrality starter | `cypher` | `table` |
+
 ## ABI Calls
 
 The scaffold handles these JSON requests today:
